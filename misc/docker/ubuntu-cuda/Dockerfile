@@ -10,7 +10,7 @@ RUN \
     git bzip2 wget sox \
     g++ make python python3 \
     zlib1g-dev automake autoconf libtool subversion \
-    libatlas-base-dev
+    libatlas-base-dev zip unzip
 
 
 WORKDIR /usr/local/
@@ -19,6 +19,7 @@ RUN git clone https://github.com/kaldi-asr/kaldi.git
 
 
 WORKDIR /usr/local/kaldi/tools
+RUN extras/install_mkl.sh
 RUN extras/check_dependencies.sh
 RUN make -j $CPU_CORE
 
